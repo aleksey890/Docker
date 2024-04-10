@@ -1,0 +1,38 @@
+version: '3.6'
+services:
+   java-app:
+    image: openjdk:21
+    container_name: app
+    ports:
+      - '80:80'
+    restart: unless-stopped
+    depends_on:
+      - app-db
+      - app-redis
+    networks:
+      - internet
+      - localnet
+   app-db:
+    image: postgres
+    container_name: app-postgres
+    restart: unless-stopped
+    environment:
+      - POSTGRES_PASSWROD=123456
+    networks:
+      - localnet 
+   app-redis:
+    image: redis
+    container_name: app-redis
+    restart: unless-stopped
+    networks:
+      - localnet
+networks:
+  internet:
+    name: internet
+    driver: bridge
+  localnet:
+    name: localnet
+    driver: bridge  
+
+
+
