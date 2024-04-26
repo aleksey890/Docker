@@ -1,5 +1,7 @@
 version: '3.6'
+
 services:
+
    java-app:
     image: openjdk:21
     container_name: app
@@ -12,6 +14,7 @@ services:
     networks:
       - internet
       - localnet
+   
    app-db:
     image: postgres
     container_name: app-postgres
@@ -20,12 +23,14 @@ services:
       - POSTGRES_PASSWROD=123456
     networks:
       - localnet 
+   
    app-redis:
     image: redis
     container_name: app-redis
     restart: unless-stopped
     networks:
       - localnet
+
 networks:
   internet:
     name: internet
