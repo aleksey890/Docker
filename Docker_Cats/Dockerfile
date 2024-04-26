@@ -1,7 +1,6 @@
 FROM ubuntu:22.04
 LABEL author = "aleksejdanilik0@gmail.com"
-RUN apt-get update 
-RUN apt-get install nginx -y
+RUN apt-get update && apt-get install nginx -y
 WORKDIR /var/www/html/
 COPY index.html .
 COPY style.css .
